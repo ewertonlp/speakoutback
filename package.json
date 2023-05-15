@@ -1,0 +1,35 @@
+{
+  "name": "adv-ouvidoria",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Plataforma Ouvidoria",
+  "scripts": {
+    "dev": "strapi develop",
+    "start": "strapi start",
+    "build": "strapi build",
+    "strapi": "strapi"
+  },
+  "dependencies": {
+    "@strapi/plugin-documentation": "^4.9.0",
+    "@strapi/plugin-i18n": "4.9.0",
+    "@strapi/plugin-users-permissions": "4.9.0",
+    "@strapi/provider-email-sendgrid": "^4.10.5",
+    "@strapi/strapi": "4.9.0",
+    "mysql": "2.18.1",
+    "sharp": "^0.32.0",
+    "strapi-plugin-multi-select": "^1.1.0",
+    "strapi-plugin-timezone-select": "^1.0.0",
+    "strapi-plugin-transformer": "^3.1.0"
+  },
+  "author": {
+    "name": "Vinicius Oliveira"
+  },
+  "strapi": {
+    "uuid": "ab86dfe3-f17a-4763-9b45-143c9aefa395"
+  },
+  "engines": {
+    "node": ">=14.19.1 <=18.x.x",
+    "npm": ">=6.0.0"
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,15 @@
+version: "3.7"
+services:
+  mysql:
+    image: mysql:5.7
+    #command: --lower_case_table_names=1
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - 3306:3306
+    volumes:
+      - data:/var/lib/mysql
+  backend:
+    build: .
+volumes:
+  data:

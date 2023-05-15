@@ -1,0 +1,5 @@
+/**
+ * cep service
+ */
+
+export default () => ({});
