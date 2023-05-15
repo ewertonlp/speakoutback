@@ -4,7 +4,8 @@
   "info": {
     "singularName": "tenant",
     "pluralName": "tenants",
-    "displayName": "tenant"
+    "displayName": "tenant",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -26,6 +27,20 @@
       "relation": "oneToMany",
       "target": "api::business.business",
       "mappedBy": "tenant"
+    },
+    "logo": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": true
+    },
+    "banner": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": true
     }
   }
 }

@@ -81,6 +81,15 @@
       "relation": "oneToOne",
       "target": "api::person.person",
       "mappedBy": "user"
+    },
+    "fullname": {
+      "type": "string",
+      "required": true
+    },
+    "cpf": {
+      "type": "string",
+      "required": true,
+      "unique": true
     }
   }
 }
