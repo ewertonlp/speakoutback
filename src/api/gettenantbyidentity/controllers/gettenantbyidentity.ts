@@ -7,7 +7,7 @@ export default {
     try {
       const { query, params } = ctx.request;
       if (params.identity) {
-        const tenant = await strapi.query("api::tenant.tenant").findMany({
+        const tenant = await strapi.query("api::tenant.tenant").findOne({
           where: {
             identity: params.identity,
           },

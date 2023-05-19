@@ -7,7 +7,7 @@ export default {
     try {
       const { query, params } = ctx.request;
       if (params.protocol) {
-        const post = await strapi.query("api::post.post").findMany({
+        const post = await strapi.query("api::post.post").findOne({
           where: {
             protocol: params.protocol,
           },
