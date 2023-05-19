@@ -1,0 +1,5 @@
+/**
+ * posthistorybyprotocol service
+ */
+
+export default () => ({});
