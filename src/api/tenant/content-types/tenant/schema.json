@@ -30,7 +30,7 @@
     },
     "logo": {
       "type": "media",
-      "multiple": true,
+      "multiple": false,
       "required": false,
       "allowedTypes": [
         "images"
@@ -38,7 +38,7 @@
     },
     "banner": {
       "type": "media",
-      "multiple": true,
+      "multiple": false,
       "required": false,
       "allowedTypes": [
         "images"
