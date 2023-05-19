@@ -1,0 +1,5 @@
+/**
+ * gettenantbyidentity service
+ */
+
+export default () => ({});

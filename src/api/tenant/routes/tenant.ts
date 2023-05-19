@@ -2,6 +2,6 @@
  * tenant router
  */
 
-import { factories } from '@strapi/strapi';
+import { factories } from "@strapi/strapi";
 
-export default factories.createCoreRouter('api::tenant.tenant');
+export default factories.createCoreRouter("api::tenant.tenant");

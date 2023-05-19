@@ -48,6 +48,14 @@
       "type": "string",
       "required": true,
       "unique": true
+    },
+    "title_banner": {
+      "type": "string",
+      "required": true
+    },
+    "subtitle_banner": {
+      "type": "string",
+      "required": true
     }
   }
 }
