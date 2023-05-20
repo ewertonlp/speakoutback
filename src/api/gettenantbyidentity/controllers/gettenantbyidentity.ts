@@ -20,6 +20,9 @@ export default {
             },
           },
         });
+        if (!tenant) {
+          return ctx.notAcceptable("tenant invalid");
+        }
         return (ctx.body = tenant);
       }
 
