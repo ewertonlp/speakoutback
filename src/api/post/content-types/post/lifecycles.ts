@@ -4,12 +4,24 @@ const { v4: uuid } = require("uuid");
 
 module.exports = {
   beforeCreate: async (data) => {
+    if (!data.params.data.tenant) {
+      throw new Error("tenant is required");
+    }
+    const tenant = await strapi.query("api::tenant.tenant").findOne({
+      where: {
+        id: data.params.data.tenant,
+      },
+    });
+    if (!tenant) {
+      throw new Error("tenant invalid");
+    }
+
     data.params.data.protocol = uuid();
   },
-  async afterCreate(event) {
+  async afterCreate(data) {
     try {
-      const { result, params } = event;
-      console.log(result, params);
+      const { result, params } = data;
+      console.log({ result, params });
       const tenant = await strapi.query("api::tenant.tenant").findOne({
         where: {
           id: params.data.tenant,
