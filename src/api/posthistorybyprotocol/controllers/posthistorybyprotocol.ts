@@ -21,6 +21,7 @@ export default {
                   select: ["id", "fullname", "email", "username"],
                 },
               },
+              orderBy: { id: "desc" },
             },
             media: {
               select: ["id", "formats", "width", "height", "url"],
