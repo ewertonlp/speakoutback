@@ -9,7 +9,7 @@ module.exports = {
   async afterCreate(event) {
     try {
       const { result, params } = event;
-
+      console.log(result, params);
       const tenant = await strapi.query("api::tenant.tenant").findOne({
         where: {
           id: params.data.tenant,
