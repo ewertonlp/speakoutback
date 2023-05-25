@@ -36,7 +36,7 @@ module.exports = {
         text: `Sua requisição foi gerada com sucesso!
       Sua requisição gerou o protocolo: <p>${result.protocol}</p>`,
         html: `<h1>Sua requisição foi gerada com sucesso!</h1>
-    <p>Sua requisição gerou o protocolo: <strong>${result.protocol}</strong> <p>
+    <p>Sua requisição gerou o protocolo: <h3>${result.protocol}</h3> </p>
     <p> Você pode acompanhar a sua requisição através do link <a href="https://ouvidoria-app-pv54x.ondigitalocean.app/ouvidoria/status-denuncia/?company=${tenant.identity}">consultar status</a>.</p>`,
       };
 
