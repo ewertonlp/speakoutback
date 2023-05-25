@@ -3,11 +3,16 @@
  */
 
 import { factories } from "@strapi/strapi";
+import GetTenantUserJwt from "../../../utils/tenant";
 
 export default factories.createCoreController(
   "api::tenant.tenant",
   ({ strapi }) => ({
     async find(ctx) {
+      const user = await GetTenantUserJwt();
+      if (!user.tenant.id) {
+        return ctx.notAcceptable("user no tenant valid");
+      }
       let filters = {};
       if (ctx.request.query.filters) {
         filters = ctx.request.query.filters;
@@ -19,7 +24,5 @@ export default factories.createCoreController(
 
       return tenants;
     },
-
-    async findOne(ctx) {},
   })
 );
