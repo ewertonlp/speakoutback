@@ -14,8 +14,9 @@
   "attributes": {
     "tenant": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::tenant.tenant"
+      "relation": "manyToOne",
+      "target": "api::tenant.tenant",
+      "inversedBy": "posts"
     },
     "response": {
       "type": "json",
@@ -30,14 +31,15 @@
       "required": true
     },
     "media": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": true
+      ]
     },
     "posthistories": {
       "type": "relation",

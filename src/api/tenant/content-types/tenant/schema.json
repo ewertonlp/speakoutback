@@ -56,6 +56,24 @@
     "subtitle_banner": {
       "type": "string",
       "required": true
+    },
+    "posts": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::post.post",
+      "mappedBy": "tenant"
+    },
+    "people": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::person.person",
+      "mappedBy": "tenant"
+    },
+    "users": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "plugin::users-permissions.user",
+      "mappedBy": "tenant"
     }
   }
 }

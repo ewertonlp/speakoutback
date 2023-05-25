@@ -68,13 +68,15 @@
     },
     "business": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::business.business"
+      "relation": "manyToOne",
+      "target": "api::business.business",
+      "inversedBy": "users"
     },
     "tenant": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::tenant.tenant"
+      "relation": "manyToOne",
+      "target": "api::tenant.tenant",
+      "inversedBy": "users"
     },
     "person": {
       "type": "relation",

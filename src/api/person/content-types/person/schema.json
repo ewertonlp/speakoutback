@@ -44,8 +44,9 @@
     },
     "tenant": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::tenant.tenant"
+      "relation": "manyToOne",
+      "target": "api::tenant.tenant",
+      "inversedBy": "people"
     },
     "business": {
       "type": "relation",
