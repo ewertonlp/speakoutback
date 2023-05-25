@@ -4,6 +4,7 @@ const { v4: uuid } = require("uuid");
 
 module.exports = {
   beforeCreate: async (data) => {
+    console.log(data);
     if (!data.params.data.tenant) {
       throw new Error("tenant is required");
     }
