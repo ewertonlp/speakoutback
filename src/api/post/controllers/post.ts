@@ -9,6 +9,9 @@ export default factories.createCoreController(
   ({ strapi }) => ({
     async create(ctx) {
       try {
+        if (!ctx.request.body.data.tenant) {
+          return ctx.notAcceptable("tenant is required");
+        }
         const tenant = await strapi.query("api::tenant.tenant").findOne({
           where: {
             id: ctx.request.body.data.tenant,
