@@ -74,6 +74,10 @@
       "relation": "oneToMany",
       "target": "plugin::users-permissions.user",
       "mappedBy": "tenant"
+    },
+    "linkcondutecode": {
+      "type": "string",
+      "required": true
     }
   }
 }
