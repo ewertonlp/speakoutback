@@ -69,6 +69,8 @@ export default factories.createCoreController(
         if (!user.tenant.id) {
           return ctx.notAcceptable("user no tenant valid");
         }
+        delete ctx.request.body.data.id;
+
         ctx.request.body.data.tenant = user.tenant.id;
         const { address } = ctx.request.body.data;
         if (address) {
