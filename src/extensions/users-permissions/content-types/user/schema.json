@@ -92,6 +92,12 @@
       "type": "string",
       "required": true,
       "unique": true
+    },
+    "posthistories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::posthistory.posthistory",
+      "mappedBy": "user"
     }
   }
 }
