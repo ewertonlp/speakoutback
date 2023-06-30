@@ -46,6 +46,29 @@
       "relation": "oneToMany",
       "target": "api::posthistory.posthistory",
       "mappedBy": "post"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "novo",
+        "em_progresso",
+        "concluido",
+        "cancelado"
+      ],
+      "default": "novo",
+      "required": false
+    },
+    "sensibilidade": {
+      "type": "enumeration",
+      "enum": [
+        "baixa",
+        "media",
+        "alta"
+      ],
+      "default": "baixa"
+    },
+    "closedate": {
+      "type": "date"
     }
   }
 }
