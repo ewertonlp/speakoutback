@@ -2,14 +2,15 @@
 
 const { v4: uuid } = require("uuid");
 
-export default ({ env }) => ({ 
-  beforeCreate: async (data) => {
-    data.params.data.protocol = uuid();
+module.exports = { 
+ async beforeCreate(event){
+    event.params.data.protocol = uuid();
   },
  
-  async afterCreate(data) {
+  async afterCreate(event) {
     try {
-      const { result, params } = data;
+      const { result, params } = event;
+      
       const tenant = await strapi.query("api::tenant.tenant").findOne({
         where: {
           id: params.data.tenant,
@@ -18,14 +19,14 @@ export default ({ env }) => ({
       if (!tenant) {
         throw new Error("tenant invalid");
       }
-
+   
       const emailTemplate = {
         subject: `Ouvidoria`,
         text: `Sua requisição foi gerada com sucesso!
       Sua requisição gerou o protocolo: <p>${result.protocol}</p>`,
         html: `<h1>Sua requisição foi gerada com sucesso!</h1>
     <p>Sua requisição gerou o protocolo: <h3>${result.protocol}</h3> </p>
-    <p> Você pode acompanhar a sua requisição através do link <a href="${env('FRONT_URL')}/ouvidoria/status-denuncia/?company=${tenant.identity}">consultar status</a>.</p>`,
+    <p> Você pode acompanhar a sua requisição através do link <a href="${process.env.FRONT_URL}/ouvidoria/status-denuncia/?company=${tenant.identity}">consultar status</a>.</p>`,
       };
 
       await strapi.plugins["email"].services.email.sendTemplatedEmail(
@@ -38,4 +39,4 @@ export default ({ env }) => ({
       throw new Error("Error:" + err.message);
     }
   },
-})
+}

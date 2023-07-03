@@ -20,6 +20,7 @@ export default factories.createCoreController(
         if (!tenant) {
           return ctx.notAcceptable("user no tenant valid");
         }
+       
         const response = super.create(ctx);
         return response;
       } catch (err) {
