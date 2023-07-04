@@ -67,8 +67,17 @@
       ],
       "default": "baixa"
     },
-    "closedate": {
-      "type": "date"
+    "users": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "posts"
+    },
+    "postclosed": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::postclosed.postclosed",
+      "mappedBy": "post"
     }
   }
 }

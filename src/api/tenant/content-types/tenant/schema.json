@@ -22,12 +22,6 @@
       "default": true,
       "required": true
     },
-    "businesses": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::business.business",
-      "mappedBy": "tenant"
-    },
     "logo": {
       "type": "media",
       "multiple": false,
@@ -78,6 +72,18 @@
     "linkcondutecode": {
       "type": "string",
       "required": true
+    },
+    "areas": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::area.area",
+      "mappedBy": "tenant"
+    },
+    "postcloseds": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::postclosed.postclosed",
+      "mappedBy": "tenant"
     }
   }
 }

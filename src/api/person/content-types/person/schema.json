@@ -48,11 +48,6 @@
       "target": "api::tenant.tenant",
       "inversedBy": "people"
     },
-    "business": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::business.business"
-    },
     "user": {
       "type": "relation",
       "relation": "oneToOne",

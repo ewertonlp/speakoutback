@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "postcloseds",
+  "info": {
+    "singularName": "postclosed",
+    "pluralName": "postcloseds",
+    "displayName": "Postclosed",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "postcloseds"
+    },
+    "date_close": {
+      "type": "date",
+      "required": true
+    },
+    "post": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::post.post",
+      "inversedBy": "postclosed"
+    },
+    "comment": {
+      "type": "richtext",
+      "required": true,
+      "minLength": 20
+    },
+    "tenant": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::tenant.tenant",
+      "inversedBy": "postcloseds"
+    }
+  }
+}

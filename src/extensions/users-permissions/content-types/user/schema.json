@@ -66,12 +66,6 @@
       "inversedBy": "users",
       "configurable": false
     },
-    "business": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::business.business",
-      "inversedBy": "users"
-    },
     "tenant": {
       "type": "relation",
       "relation": "manyToOne",
@@ -98,6 +92,24 @@
       "relation": "oneToMany",
       "target": "api::posthistory.posthistory",
       "mappedBy": "user"
+    },
+    "posts": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::post.post",
+      "mappedBy": "users"
+    },
+    "postcloseds": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::postclosed.postclosed",
+      "mappedBy": "user"
+    },
+    "areas": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::area.area",
+      "inversedBy": "users"
     }
   }
 }
