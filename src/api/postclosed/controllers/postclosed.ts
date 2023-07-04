@@ -3,6 +3,7 @@
  */
 
 import { factories } from '@strapi/strapi'
+import postclosed from '../routes/postclosed';
 
 export default factories.createCoreController('api::postclosed.postclosed', ({ strapi }) => ({
     async create(ctx) {
@@ -19,7 +20,7 @@ export default factories.createCoreController('api::postclosed.postclosed', ({ s
           return ctx.notAcceptable("Usuário sem tenant");
         }
 
-        const post = await strapi.query("api::post:post").findOne({
+        const post = await strapi.query("api::post.post").findOne({
             where: {
                 id: ctx.request.body.data.post
             },
@@ -33,7 +34,7 @@ export default factories.createCoreController('api::postclosed.postclosed', ({ s
             }
         })
 
-        const user = post.data.users.find(user => user.id == ctx.request.body.data.user)
+        const user = post.users.find(user => user.id == ctx.request.body.data.user)
 
         if (!post || !user) {
             return ctx.notAcceptable("Usuário sem permissão para finalizar o post");
@@ -43,5 +44,46 @@ export default factories.createCoreController('api::postclosed.postclosed', ({ s
         return response;
       } catch (err) {
         return ctx.badRequest(`${err.message}`, JSON.stringify(err));
-      }}
+      }},
+
+      async update(ctx) {
+        try {
+       
+          if (!ctx.request.body.data.tenant) {
+            return ctx.notAcceptable("Tenant é obrigatório");
+          }
+          const tenant = await strapi.query("api::tenant.tenant").findOne({
+            where: {
+              id: ctx.request.body.data.tenant,
+            },
+          });
+          if (!tenant) {
+            return ctx.notAcceptable("Usuário sem tenant");
+          }
+  
+          const postclosed = await strapi.query("api::postclosed.postclosed").findOne({
+              where: {
+                  id: ctx.request.params.id,
+                  tenant: ctx.request.body.data.tenant,
+                  user: ctx.request.body.data.user
+              },
+              populate: {
+                  user: {
+                      where: {
+                          id: ctx.request.body.data.user
+                      },
+                      select: ['id']
+                  }
+              }
+          })
+
+          if (!postclosed || !postclosed?.user?.id ) {
+              return ctx.notAcceptable("Usuário sem permissão para finalizar o post");
+            }
+         
+          const response = super.update(ctx);
+          return response;
+        } catch (err) {
+          return ctx.badRequest(`${err.message}`, JSON.stringify(err));
+        }}
     }))
