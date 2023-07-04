@@ -5,7 +5,7 @@ export default async function GetTenantUserJwt() {
   ].services.jwt.getToken(ctx);
 
   if (!tokenUser) {
-    throw new Error("token not valid");
+    return  ctx.badRequest("Token jwt invalido");
   }
 
   const { id, isAdmin = false } = tokenUser;
@@ -13,7 +13,7 @@ export default async function GetTenantUserJwt() {
     "plugin::users-permissions.user",
     id,
     {
-      populate: "tenant",
+      populate:[ "tenant" , "role" ],
     }
   );
 
