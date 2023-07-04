@@ -72,12 +72,6 @@
       "target": "api::tenant.tenant",
       "inversedBy": "users"
     },
-    "person": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::person.person",
-      "mappedBy": "user"
-    },
     "fullname": {
       "type": "string",
       "required": true
@@ -110,6 +104,11 @@
       "relation": "manyToMany",
       "target": "api::area.area",
       "inversedBy": "users"
+    },
+    "comite": {
+      "type": "boolean",
+      "default": false,
+      "required": false
     }
   }
 }

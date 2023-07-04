@@ -57,12 +57,6 @@
       "target": "api::post.post",
       "mappedBy": "tenant"
     },
-    "people": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::person.person",
-      "mappedBy": "tenant"
-    },
     "users": {
       "type": "relation",
       "relation": "oneToMany",
