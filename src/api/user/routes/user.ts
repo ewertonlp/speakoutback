@@ -9,5 +9,14 @@ export default {
         middlewares: [],
       },
     },
+    {
+      method: "GET",
+      path: "/users/:id",
+      handler: "user.findOne",
+      config: {
+        policies: [],
+        middlewares: [],
+      },
+    },
   ],
 };
