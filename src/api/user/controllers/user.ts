@@ -15,7 +15,7 @@ export default {
       where: {
         tenant: user.tenant.id,
       },
-      populate: ["tenant", "role"],
+      populate: ["tenant", "role", "areas"],
     });
   },
   async findOne(ctx) {
@@ -29,7 +29,7 @@ export default {
         tenant: user.tenant.id,
         id: ctx.request.params.id,
       },
-      populate: ["tenant", "role"],
+      populate: ["tenant", "role", "areas"],
     });
   },
 };
