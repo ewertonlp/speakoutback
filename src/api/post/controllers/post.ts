@@ -10,62 +10,47 @@ export default factories.createCoreController(
   ({ strapi }) => ({
     async find(ctx) {
       const user = await GetTenantUserJwt();
-
+      const filter: any = {
+        tenant: user.tenant.id,
+      };
       if (user.role.name != "admin") {
-        return await strapi.query("api::post.post").findMany({
-          where: {
-            tenant: user.tenant.id,
-            users: {
-              id: {
-                $eq: user.id,
-              },
-            },
+        filter.users = {
+          id: {
+            $eq: user.id,
           },
-          populate: {
-            users: true,
-            tenant: true,
-          },
-        });
+        };
       }
 
       return await strapi.query("api::post.post").findMany({
-        where: {
-          tenant: user.tenant.id,
-        },
+        where: filter,
         populate: {
           users: true,
           tenant: true,
+          postclosed: true,
         },
       });
     },
     async findOne(ctx) {
       try {
         const user = await GetTenantUserJwt();
-
+        const filter: any = {
+          tenant: user.tenant.id,
+          id: ctx.request.params.id,
+        };
         if (user.role.name != "admin") {
-          return await strapi.query("api::post.post").findOne({
-            where: {
-              id: ctx.request.params.id,
-              users: {
-                id: {
-                  $eq: user.id,
-                },
-              },
+          filter.users = {
+            id: {
+              $eq: user.id,
             },
-            populate: {
-              users: true,
-              tenant: true,
-            },
-          });
+          };
         }
 
         return await strapi.query("api::post.post").findOne({
-          where: {
-            id: ctx.request.params.id,
-          },
+          where: filter,
           populate: {
             users: true,
             tenant: true,
+            postclosed: true,
           },
         });
       } catch (err) {
