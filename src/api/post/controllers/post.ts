@@ -23,6 +23,7 @@ export default factories.createCoreController(
           },
           populate: {
             users: true,
+            tenant: true,
           },
         });
       }
@@ -33,6 +34,7 @@ export default factories.createCoreController(
         },
         populate: {
           users: true,
+          tenant: true,
         },
       });
     },
@@ -52,6 +54,7 @@ export default factories.createCoreController(
             },
             populate: {
               users: true,
+              tenant: true,
             },
           });
         }
@@ -62,6 +65,7 @@ export default factories.createCoreController(
           },
           populate: {
             users: true,
+            tenant: true,
           },
         });
       } catch (err) {
