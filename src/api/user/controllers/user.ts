@@ -11,7 +11,7 @@ export default {
       return ctx.notAcceptable("Usuário sem permissão para consultar usuários");
     }
 
-    return await await strapi.query("plugin::users-permissions.user").findOne({
+    return await await strapi.query("plugin::users-permissions.user").findMany({
       where: {
         tenant: user.tenant.id,
       },
