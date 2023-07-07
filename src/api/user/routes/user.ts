@@ -18,5 +18,14 @@ export default {
         middlewares: [],
       },
     },
+     {
+      method: "GET",
+      path: "/users/me",
+      handler: "user.me",
+      config: {
+        policies: [],
+        middlewares: [],
+      },
+    },
   ],
 };
