@@ -38,7 +38,7 @@ export default {
     },
     {
       method: "PUT",
-      path: "/users/update-current/:id",
+      path: "/users/update-current-tenant/:id",
       handler: "user.updateCurrentTenant",
       config: {
         policies: [],
