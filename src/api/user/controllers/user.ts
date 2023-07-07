@@ -32,19 +32,19 @@ export default {
       populate: ["tenant", "role", "areas"],
     });
   },
-
-    async me(ctx) {
-    const user = await GetTenantUserJwt();
-    return await await strapi.query("plugin::users-permissions.user").findOne({
-      where: {
-        tenant: user.tenant.id,
-        id: ctx.request.params.id,
-      },
-      populate: ["tenant", "role", "areas"],
-    });
-  },
-     async findMe(ctx) {
+  async me(ctx) {
     const user = await GetTenantUserJwt();
     return user;
+  },
+   async findMe(ctx) {
+    const user = await GetTenantUserJwt();
+    return user;
+  },
+  async updateCurrentTenant(ctx){
+      const user = await GetTenantUserJwt();
+      const response = await strapi.query("plugin::users-permissions.user").update({
+          where: { id: ctx.request.params.id },
+          data: ctx.request.body.data,
+      });
   }
 };
