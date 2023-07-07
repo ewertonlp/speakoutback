@@ -42,7 +42,7 @@ export default {
   },
   async updateCurrentTenant(ctx){
       const user = await GetTenantUserJwt();
-      const response = await strapi.query("plugin::users-permissions.user").update({
+      return await strapi.query("plugin::users-permissions.user").update({
           where: { id: ctx.request.params.id },
           data: ctx.request.body.data,
       });
