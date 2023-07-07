@@ -29,8 +29,8 @@ export default {
     },
       {
       method: "GET",
-      path: "/users/find-me",
-      handler: "user.me",
+      path: "/users/find/me",
+      handler: "user.findMe",
       config: {
         policies: [],
         middlewares: [],
