@@ -36,5 +36,14 @@ export default {
         middlewares: [],
       },
     },
+    {
+      method: "PUT",
+      path: "/users/update-current/:id",
+      handler: "user.updateCurrentTenant",
+      config: {
+        policies: [],
+        middlewares: [],
+      },
+    }
   ],
 };
