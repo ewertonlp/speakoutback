@@ -43,4 +43,14 @@ export default {
       populate: ["tenant", "role", "areas"],
     });
   },
+     async findMe(ctx) {
+    const user = await GetTenantUserJwt();
+    return await await strapi.query("plugin::users-permissions.user").findOne({
+      where: {
+        tenant: user.tenant.id,
+        id: ctx.request.params.id,
+      },
+      populate: ["tenant", "role", "areas"],
+    });
+  },
 };
