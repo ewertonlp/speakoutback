@@ -23,6 +23,7 @@ export default {
               },
               orderBy: { id: "desc" },
             },
+            postclosed: true,
             media: {
               select: ["id", "formats", "width", "height", "url"],
             },
