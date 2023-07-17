@@ -23,6 +23,7 @@ export default factories.createCoreController(
         populate: {
           tenant: true,
           post: true,
+          media: true,
         },
       });
     },
@@ -37,6 +38,7 @@ export default factories.createCoreController(
         populate: {
           tenant: true,
           post: true,
+          media: true,
         },
       });
     },
@@ -125,6 +127,7 @@ export default factories.createCoreController(
         populate: {
           tenant: true,
           post: true,
+          media: true,
         },
       });
     },
