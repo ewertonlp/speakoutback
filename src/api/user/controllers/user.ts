@@ -36,15 +36,30 @@ export default {
     const user = await GetTenantUserJwt();
     return user;
   },
-   async findMe(ctx) {
+  async findMe(ctx) {
     const user = await GetTenantUserJwt();
     return user;
   },
-  async updateCurrentTenant(ctx){
-      const user = await GetTenantUserJwt();
-      return await strapi.query("plugin::users-permissions.user").update({
-          where: { id: ctx.request.params.id },
-          data: ctx.request.body.data,
-      });
-  }
+  async updateCurrentTenant(ctx) {
+    const user = await GetTenantUserJwt();
+    return await strapi.query("plugin::users-permissions.user").update({
+      where: { id: ctx.request.params.id },
+      data: ctx.request.body.data,
+    });
+  },
+  async updatePassword(ctx) {
+    const user = await GetTenantUserJwt();
+    const password = ctx.request.body.data.password;
+    const confirmPassword = ctx.request.body.data.confirmPassword;
+
+    if (password != confirmPassword) {
+      return ctx.notAcceptable("os passwords não são iguais");
+    }
+    return await strapi.query("plugin::users-permissions.user").update({
+      where: { id: user.id },
+      data: {
+        password: password,
+      },
+    });
+  },
 };

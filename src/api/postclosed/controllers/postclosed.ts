@@ -11,11 +11,15 @@ export default factories.createCoreController(
   ({ strapi }) => ({
     async find(ctx) {
       const user = await GetTenantUserJwt();
-      const filter = {
+      const { filter } = ctx.request.query;
+
+      const filters = {
         tenant: user.tenant.id,
+        ...filter,
       };
+
       return await strapi.query("api::postclosed.postclosed").findMany({
-        where: filter,
+        where: filters,
         populate: {
           tenant: true,
           post: true,
@@ -104,6 +108,25 @@ export default factories.createCoreController(
       } catch (err) {
         return ctx.badRequest(`${err.message}`, JSON.stringify(err));
       }
+    },
+    async findByPost(ctx) {
+      const user = await GetTenantUserJwt();
+      const { postId } = ctx.request.params;
+      if (!postId) {
+        return ctx.notAcceptable("Id do post é necessario");
+      }
+      const filters = {};
+
+      return await strapi.query("api::postclosed.postclosed").findMany({
+        where: {
+          tenant: user.tenant.id,
+          post: postId,
+        },
+        populate: {
+          tenant: true,
+          post: true,
+        },
+      });
     },
   })
 );
