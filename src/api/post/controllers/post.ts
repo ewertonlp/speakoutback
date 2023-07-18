@@ -26,7 +26,16 @@ export default factories.createCoreController(
         populate: {
           users: true,
           tenant: true,
-          postclosed: true,
+          postcloseds: {
+            populate: {
+              media: true,
+            },
+          },
+          posthistories: {
+            populate: {
+              media: true,
+            },
+          },
         },
       });
     },
@@ -50,7 +59,16 @@ export default factories.createCoreController(
           populate: {
             users: true,
             tenant: true,
-            postclosed: true,
+            postcloseds: {
+              populate: {
+                media: true,
+              },
+            },
+            posthistories: {
+              populate: {
+                media: true,
+              },
+            },
           },
         });
       } catch (err) {
