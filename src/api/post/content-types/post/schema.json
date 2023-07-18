@@ -73,9 +73,9 @@
       "target": "plugin::users-permissions.user",
       "inversedBy": "posts"
     },
-    "postclosed": {
+    "postcloseds": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "oneToMany",
       "target": "api::postclosed.postclosed",
       "mappedBy": "post"
     }

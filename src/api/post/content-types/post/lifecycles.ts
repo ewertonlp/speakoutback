@@ -2,15 +2,15 @@
 
 const { v4: uuid } = require("uuid");
 
-module.exports = { 
- async beforeCreate(event){
+module.exports = {
+  async beforeCreate(event) {
     event.params.data.protocol = uuid();
   },
- 
+
   async afterCreate(event) {
     try {
       const { result, params } = event;
-      
+
       const tenant = await strapi.query("api::tenant.tenant").findOne({
         where: {
           id: params.data.tenant,
@@ -19,7 +19,7 @@ module.exports = {
       if (!tenant) {
         throw new Error("tenant invalid");
       }
-   
+
       const emailTemplate = {
         subject: `Ouvidoria`,
         text: `Sua requisição foi gerada com sucesso!
@@ -39,4 +39,4 @@ module.exports = {
       throw new Error("Error:" + err.message);
     }
   },
-}
+};

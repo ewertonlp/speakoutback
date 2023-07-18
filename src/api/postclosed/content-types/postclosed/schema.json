@@ -24,14 +24,14 @@
     },
     "post": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "manyToOne",
       "target": "api::post.post",
-      "inversedBy": "postclosed"
+      "inversedBy": "postcloseds"
     },
     "comment": {
       "type": "richtext",
       "required": true,
-      "minLength": 20
+      "minLength": 5
     },
     "tenant": {
       "type": "relation",
@@ -40,14 +40,15 @@
       "inversedBy": "postcloseds"
     },
     "media": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": true
+      ]
     }
   }
 }

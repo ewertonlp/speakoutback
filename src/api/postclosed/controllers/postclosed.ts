@@ -50,27 +50,22 @@ export default factories.createCoreController(
           const post = await strapi.query("api::post.post").findOne({
             where: {
               id: ctx.request.body.data.post,
-            },
-            populate: {
               users: {
-                where: {
-                  id: ctx.request.body.data.user,
+                id: {
+                  $eq: user.id,
                 },
-                select: ["id"],
               },
             },
           });
 
-          const userPost = post.users.find(
-            (user) => user.id == ctx.request.body.data.user
-          );
-
-          if (!post || !userPost) {
+          if (!post) {
             return ctx.notAcceptable(
               "Usuário sem permissão para finalizar o post"
             );
           }
         }
+        ctx.request.body.data.tenant = user.tenant.id;
+        ctx.request.body.data.user = user.id;
         return super.create(ctx);
       } catch (err) {
         return ctx.badRequest(`${err.message}`, JSON.stringify(err));
@@ -89,22 +84,16 @@ export default factories.createCoreController(
                 tenant: user.tenant.id,
                 user: user.id,
               },
-              populate: {
-                user: {
-                  where: {
-                    id: user.id,
-                  },
-                  select: ["id"],
-                },
-              },
             });
 
-          if (!postclosed || !postclosed?.user?.id) {
+          if (!postclosed) {
             return ctx.notAcceptable(
               "Usuário sem permissão para finalizar o post"
             );
           }
         }
+        ctx.request.body.data.tenant = user.tenant.id;
+        ctx.request.body.data.user = user.id;
 
         return super.update(ctx);
       } catch (err) {
@@ -117,7 +106,6 @@ export default factories.createCoreController(
       if (!postId) {
         return ctx.notAcceptable("Id do post é necessario");
       }
-      const filters = {};
 
       return await strapi.query("api::postclosed.postclosed").findMany({
         where: {
@@ -125,8 +113,6 @@ export default factories.createCoreController(
           post: postId,
         },
         populate: {
-          tenant: true,
-          post: true,
           media: true,
         },
       });
