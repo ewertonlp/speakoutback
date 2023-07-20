@@ -11,7 +11,7 @@ export default factories.createCoreController(
     async find(ctx) {
       try {
         const user = await GetTenantUserJwt();
-        if (!user?.tenant?.id) {
+        if (!user?.tenant?.id || user?.role.name != "admin") {
           return ctx.badRequest();
         }
         let filters = {};
@@ -26,6 +26,53 @@ export default factories.createCoreController(
         return tenants;
       } catch (err) {
         return ctx.unauthorized();
+      }
+    },
+    async findById(ctx) {
+      try {
+        const user = await GetTenantUserJwt();
+        if (!user?.tenant?.id || user?.role.name != "admin") {
+          return ctx.badRequest();
+        }
+        let filters = {};
+        if (ctx.request.query.filters) {
+          filters = ctx.request.query.filters;
+        }
+        const tenants = await strapi.query("api::tenant.tenant").findMany({
+          where: filters,
+          populate: { logo: true, banner: true },
+        });
+
+        return tenants;
+      } catch (err) {
+        return ctx.unauthorized();
+      }
+    },
+
+    async create(ctx) {
+      try {
+        const user = await GetTenantUserJwt();
+        if (user?.role.name != "admin") {
+          return ctx.notAcceptable(
+            "Usuário sem permissão para cadastrar TENANT"
+          );
+        }
+        return super.create(ctx);
+      } catch (err) {
+        return ctx.badRequest(`${err.message}`, JSON.stringify(err));
+      }
+    },
+    async update(ctx) {
+      try {
+        const user = await GetTenantUserJwt();
+        if (user?.role.name != "admin") {
+          return ctx.notAcceptable(
+            "Usuário sem permissão para cadastrar TENANT"
+          );
+        }
+        return super.update(ctx);
+      } catch (err) {
+        return ctx.badRequest(`${err.message}`, JSON.stringify(err));
       }
     },
   })
