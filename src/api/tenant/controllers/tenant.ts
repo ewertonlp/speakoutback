@@ -38,7 +38,7 @@ export default factories.createCoreController(
         if (ctx.request.query.filters) {
           filters = ctx.request.query.filters;
         }
-        const tenants = await strapi.query("api::tenant.tenant").findMany({
+        const tenants = await strapi.query("api::tenant.tenant").findOne({
           where: filters,
           populate: { logo: true, banner: true },
         });
