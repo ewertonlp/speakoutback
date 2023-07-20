@@ -28,7 +28,7 @@ export default factories.createCoreController(
         return ctx.unauthorized();
       }
     },
-    async findById(ctx) {
+    async findOne(ctx) {
       try {
         const user = await GetTenantUserJwt();
         if (!user?.tenant?.id || user?.role.name != "admin") {
