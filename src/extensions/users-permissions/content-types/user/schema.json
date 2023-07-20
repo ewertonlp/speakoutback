@@ -64,7 +64,8 @@
       "relation": "manyToOne",
       "target": "plugin::users-permissions.role",
       "inversedBy": "users",
-      "configurable": false
+      "default": "1",
+      "configurable": true
     },
     "tenant": {
       "type": "relation",
