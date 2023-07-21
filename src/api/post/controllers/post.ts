@@ -29,13 +29,17 @@ export default factories.createCoreController(
           postcloseds: {
             populate: {
               media: true,
-              user: true,
+              user: {
+                select: ["id", "fullname"],
+              },
             },
           },
           posthistories: {
             populate: {
               media: true,
-              user: true,
+              user: {
+                select: ["id", "fullname"],
+              },
             },
           },
         },
@@ -64,13 +68,17 @@ export default factories.createCoreController(
             postcloseds: {
               populate: {
                 media: true,
-                user: true,
+                user: {
+                  select: ["id", "fullname"],
+                },
               },
             },
             posthistories: {
               populate: {
                 media: true,
-                user: true,
+                user: {
+                  select: ["id", "fullname"],
+                },
               },
             },
           },
