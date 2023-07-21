@@ -35,5 +35,26 @@ export default factories.createCoreController(
         },
       });
     },
+
+    async create(ctx) {
+      const user = await GetTenantUserJwt();
+      if (!user) {
+        return ctx.badRequest();
+      }
+
+      const post = await strapi.query("api::post.post").findOne({
+        where: ctx.request.body.data.post,
+        populate: {
+          tenant: true,
+        },
+      });
+      if (!post || post.tenant.id != user.tenant.id) {
+        return ctx.badRequest();
+      }
+
+      ctx.request.body.data.user = user.id;
+
+      return super.create(ctx);
+    },
   })
 );
