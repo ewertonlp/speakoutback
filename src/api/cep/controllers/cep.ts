@@ -2,6 +2,7 @@
  * A set of functions called "actions" for `cep`
  */
 import axios from "axios";
+
 type Address = {
   street: string;
   district: string;
