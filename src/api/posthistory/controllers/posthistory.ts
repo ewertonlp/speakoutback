@@ -43,7 +43,9 @@ export default factories.createCoreController(
       }
 
       const post = await strapi.query("api::post.post").findOne({
-        where: ctx.request.body.data.post,
+        where: {
+          id: ctx.request.body.data.post,
+        },
         populate: {
           tenant: true,
         },
@@ -51,7 +53,6 @@ export default factories.createCoreController(
       if (!post || post.tenant.id != user.tenant.id) {
         return ctx.badRequest();
       }
-
       ctx.request.body.data.user = user.id;
 
       return super.create(ctx);
