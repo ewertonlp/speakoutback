@@ -109,6 +109,18 @@
       "type": "boolean",
       "default": false,
       "required": false
+    },
+    "postactionsdetails": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::postactionsdetail.postactionsdetail",
+      "mappedBy": "user"
+    },
+    "postactions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::postaction.postaction",
+      "mappedBy": "user"
     }
   }
 }

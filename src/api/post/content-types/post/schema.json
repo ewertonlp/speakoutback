@@ -78,6 +78,12 @@
       "relation": "oneToMany",
       "target": "api::postclosed.postclosed",
       "mappedBy": "post"
+    },
+    "postactions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::postaction.postaction",
+      "mappedBy": "post"
     }
   }
 }

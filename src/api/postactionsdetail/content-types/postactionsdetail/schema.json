@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "postactionsdetails",
+  "info": {
+    "singularName": "postactionsdetail",
+    "pluralName": "postactionsdetails",
+    "displayName": "postactionsdetail"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "postaction": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::postaction.postaction",
+      "inversedBy": "postactionsdetails"
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "media": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "postactionsdetails"
+    }
+  }
+}
