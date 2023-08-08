@@ -42,6 +42,14 @@ export default factories.createCoreController(
               },
             },
           },
+          postactions: {
+            populate: {
+              media: true,
+              user: {
+                select: ["id", "fullname"],
+              },
+            },
+          },
         },
       });
     },
@@ -74,6 +82,14 @@ export default factories.createCoreController(
               },
             },
             posthistories: {
+              populate: {
+                media: true,
+                user: {
+                  select: ["id", "fullname"],
+                },
+              },
+            },
+            postactions: {
               populate: {
                 media: true,
                 user: {
