@@ -13,7 +13,7 @@ export default factories.createCoreController(
       const filter = {
         tenant: user.tenant.id,
       };
-      return await strapi.query("api::postclosed.postclosed").findMany({
+      return await strapi.query("api::postaction.postaction").findMany({
         where: filter,
         populate: {
           tenant: true,
@@ -29,7 +29,7 @@ export default factories.createCoreController(
         tenant: user.tenant.id,
         id: ctx.request.params.id,
       };
-      return await strapi.query("api::postclosed.postclosed").findOne({
+      return await strapi.query("api::postaction.postaction").findOne({
         where: filter,
         populate: {
           tenant: true,
