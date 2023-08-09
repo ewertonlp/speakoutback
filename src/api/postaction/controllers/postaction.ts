@@ -19,7 +19,13 @@ export default factories.createCoreController(
             },
           },
           media: true,
-          postactionsdetails: true,
+          user: true,
+          postactionsdetails: {
+            populate: {
+              user: true,
+              media: true,
+            },
+          },
         },
       });
     },
@@ -35,7 +41,13 @@ export default factories.createCoreController(
             },
           },
           media: true,
-          postactionsdetails: true,
+          user: true,
+          postactionsdetails: {
+            populate: {
+              user: true,
+              media: true,
+            },
+          },
         },
       });
     },
@@ -52,7 +64,19 @@ export default factories.createCoreController(
           post: postId,
         },
         populate: {
+          post: {
+            populate: {
+              tenant: true,
+            },
+          },
           media: true,
+          user: true,
+          postactionsdetails: {
+            populate: {
+              user: true,
+              media: true,
+            },
+          },
         },
       });
     },
