@@ -49,7 +49,6 @@ export default factories.createCoreController(
 
       return await strapi.query("api::postaction.postaction").findMany({
         where: {
-          tenant: user.tenant.id,
           post: postId,
         },
         populate: {
