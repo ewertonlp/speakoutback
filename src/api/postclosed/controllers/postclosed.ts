@@ -3,7 +3,6 @@
  */
 
 import { factories } from "@strapi/strapi";
-
 import GetTenantUserJwt from "../../../utils/tenant";
 
 export default factories.createCoreController(
@@ -46,7 +45,7 @@ export default factories.createCoreController(
       try {
         const user = await GetTenantUserJwt();
 
-        if (user?.role.name != "admin") {
+        if (user?.role.name != "Administrador") {
           const post = await strapi.query("api::post.post").findOne({
             where: {
               id: ctx.request.body.data.post,
@@ -75,7 +74,7 @@ export default factories.createCoreController(
     async update(ctx) {
       try {
         const user = await GetTenantUserJwt();
-        if (user?.role.name != "admin") {
+        if (user?.role.name != "Administrador") {
           const postclosed = await strapi
             .query("api::postclosed.postclosed")
             .findOne({

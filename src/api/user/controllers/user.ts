@@ -7,7 +7,7 @@ import GetTenantUserJwt from "../../../utils/tenant";
 export default ({ strapi }) => ({
   async find(ctx) {
     const user = await GetTenantUserJwt();
-    if (user.role.name != "admin") {
+    if (user.role.name != "Administrador") {
       return ctx.notAcceptable("Usuário sem permissão para consultar usuários");
     }
     const { filter } = ctx.request.query;
@@ -24,7 +24,7 @@ export default ({ strapi }) => ({
   },
   async findOne(ctx) {
     const user = await GetTenantUserJwt();
-    if (user.role.name != "admin") {
+    if (user.role.name != "Administrador") {
       return ctx.notAcceptable("Usuário sem permissão para consultar usuários");
     }
 
