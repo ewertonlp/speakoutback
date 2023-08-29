@@ -34,12 +34,7 @@
       "type": "media",
       "multiple": true,
       "required": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
+      "allowedTypes": ["images", "files", "videos", "audios"]
     },
     "posthistories": {
       "type": "relation",
@@ -53,7 +48,7 @@
         "novo",
         "em_progresso",
         "concluido_procedente",
-        "concluido_inprocedente",
+        "concluido_improcedente",
         "cancelado"
       ],
       "default": "novo",
@@ -61,11 +56,7 @@
     },
     "sensibilidade": {
       "type": "enumeration",
-      "enum": [
-        "baixa",
-        "media",
-        "alta"
-      ],
+      "enum": ["baixa", "media", "alta"],
       "default": "baixa"
     },
     "users": {
