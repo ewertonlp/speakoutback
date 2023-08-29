@@ -4,7 +4,7 @@ const { v4: uuid } = require("uuid");
 
 module.exports = {
   async beforeCreate(event) {
-    event.params.data.protocol = uuid();
+    event.params.data.protocol = uuid().toString().substring(0, 10);
   },
 
   async afterCreate(event) {
