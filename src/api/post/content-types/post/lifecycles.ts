@@ -6,7 +6,6 @@ module.exports = {
   async beforeCreate(event) {
     event.params.data.protocol = uuid().toString().substring(0, 10);
   },
-
   async afterCreate(event) {
     try {
       const { result, params } = event;
