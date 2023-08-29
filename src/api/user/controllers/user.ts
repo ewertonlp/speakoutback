@@ -4,17 +4,21 @@
 
 import GetTenantUserJwt from "../../../utils/tenant";
 
-export default {
+export default ({ strapi }) => ({
   async find(ctx) {
     const user = await GetTenantUserJwt();
     if (user.role.name != "admin") {
       return ctx.notAcceptable("Usuário sem permissão para consultar usuários");
     }
+    const { filter } = ctx.request.query;
 
-    return await await strapi.query("plugin::users-permissions.user").findMany({
-      where: {
-        tenant: user.tenant.id,
-      },
+    const filters = {
+      tenant: user.tenant.id,
+      ...filter,
+    };
+
+    return await strapi.query("plugin::users-permissions.user").findMany({
+      where: filters,
       populate: ["tenant", "role", "areas"],
     });
   },
@@ -24,7 +28,7 @@ export default {
       return ctx.notAcceptable("Usuário sem permissão para consultar usuários");
     }
 
-    return await await strapi.query("plugin::users-permissions.user").findOne({
+    return await strapi.query("plugin::users-permissions.user").findOne({
       where: {
         tenant: user.tenant.id,
         id: ctx.request.params.id,
@@ -62,4 +66,4 @@ export default {
       },
     });
   },
-};
+});

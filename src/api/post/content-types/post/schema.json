@@ -52,7 +52,8 @@
       "enum": [
         "novo",
         "em_progresso",
-        "concluido",
+        "concluido_procedente",
+        "concluido_inprocedente",
         "cancelado"
       ],
       "default": "novo",

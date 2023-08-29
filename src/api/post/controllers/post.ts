@@ -10,11 +10,15 @@ export default factories.createCoreController(
   ({ strapi }) => ({
     async find(ctx) {
       const user = await GetTenantUserJwt();
-      const filter: any = {
+      const { filter } = ctx.request.query;
+
+      const filters = {
         tenant: user.tenant.id,
+        ...filter,
       };
+
       if (user.role.name != "admin") {
-        filter.users = {
+        filters.users = {
           id: {
             $eq: user.id,
           },
@@ -22,7 +26,7 @@ export default factories.createCoreController(
       }
 
       return await strapi.query("api::post.post").findMany({
-        where: filter,
+        where: filters,
         populate: {
           users: true,
           tenant: true,
@@ -56,6 +60,7 @@ export default factories.createCoreController(
     async findOne(ctx) {
       try {
         const user = await GetTenantUserJwt();
+
         const filter: any = {
           tenant: user.tenant.id,
           id: ctx.request.params.id,
