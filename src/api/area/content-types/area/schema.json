@@ -4,7 +4,8 @@
   "info": {
     "singularName": "area",
     "pluralName": "areas",
-    "displayName": "area"
+    "displayName": "area",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -14,7 +15,7 @@
     "description": {
       "type": "string",
       "required": true,
-      "minLength": 3,
+      "minLength": 2,
       "unique": false
     },
     "tenant": {
