@@ -17,7 +17,7 @@ export default factories.createCoreController(
         ...filter,
       };
 
-      if (user.role.name != "admin") {
+      if (user.role.type != "admin") {
         filters.users = {
           id: {
             $eq: user.id,
@@ -65,7 +65,7 @@ export default factories.createCoreController(
           tenant: user.tenant.id,
           id: ctx.request.params.id,
         };
-        if (user.role.name != "admin") {
+        if (user.role.type != "admin") {
           filter.users = {
             id: {
               $eq: user.id,
@@ -146,7 +146,7 @@ export default factories.createCoreController(
             },
           },
         });
-        if (user.role.name != "admin") {
+        if (user.role.type != "admin") {
           if (!post.users?.id) {
             return ctx.notAcceptable(
               "Usuário sem permissão para atualizar o post"
