@@ -11,7 +11,7 @@ export default factories.createCoreController(
     async find(ctx) {
       try {
         const user = await GetTenantUserJwt();
-        if (!user?.tenant?.id || user?.role.name != "Administrador") {
+        if (!user?.tenant?.id || user?.role.name != "admin") {
           return ctx.badRequest();
         }
         let filters = {};
@@ -31,7 +31,7 @@ export default factories.createCoreController(
     async findOne(ctx) {
       try {
         const user = await GetTenantUserJwt();
-        if (!user?.tenant?.id || user?.role.name != "Administrador") {
+        if (!user?.tenant?.id || user?.role.name != "admin") {
           return ctx.badRequest();
         }
         let filters = {};
@@ -55,7 +55,7 @@ export default factories.createCoreController(
     async create(ctx) {
       try {
         const user = await GetTenantUserJwt();
-        if (user?.role.name != "Administrador") {
+        if (user?.role.name != "admin") {
           return ctx.notAcceptable(
             "Usuário sem permissão para cadastrar TENANT"
           );
@@ -68,7 +68,7 @@ export default factories.createCoreController(
     async update(ctx) {
       try {
         const user = await GetTenantUserJwt();
-        if (user?.role.name != "Administrador") {
+        if (user?.role.name != "admin") {
           return ctx.notAcceptable(
             "Usuário sem permissão para cadastrar TENANT"
           );
