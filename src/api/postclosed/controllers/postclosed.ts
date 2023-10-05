@@ -45,7 +45,7 @@ export default factories.createCoreController(
       try {
         const user = await GetTenantUserJwt();
 
-        if (user?.role.name != "admin") {
+        if (user?.role.type != "admin") {
           const post = await strapi.query("api::post.post").findOne({
             where: {
               id: ctx.request.body.data.post,
@@ -74,7 +74,7 @@ export default factories.createCoreController(
     async update(ctx) {
       try {
         const user = await GetTenantUserJwt();
-        if (user?.role.name != "admin") {
+        if (user?.role.type != "admin") {
           const postclosed = await strapi
             .query("api::postclosed.postclosed")
             .findOne({
