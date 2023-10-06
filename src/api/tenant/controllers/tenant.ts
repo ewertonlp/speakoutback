@@ -11,6 +11,7 @@ export default factories.createCoreController(
     async find(ctx) {
       try {
         const user = await GetTenantUserJwt();
+
         if (!user?.tenant?.id || user?.role.type != "admin") {
           return ctx.badRequest();
         }
