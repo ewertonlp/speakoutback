@@ -1,3 +1,5 @@
+
+
 export default async function GetTenantUserJwt() {
   const ctx = strapi.requestContext.get();
   const tokenUser = await strapi.plugins[
@@ -5,7 +7,7 @@ export default async function GetTenantUserJwt() {
   ].services.jwt.getToken(ctx);
 
   if (!tokenUser) {
-    return  ctx.badRequest("Token jwt invalido");
+    return ctx.badRequest("Token jwt invalido");
   }
 
   const { id, isAdmin = false } = tokenUser;
@@ -13,7 +15,7 @@ export default async function GetTenantUserJwt() {
     "plugin::users-permissions.user",
     id,
     {
-      populate:[ "tenant" , "role" ],
+      populate: ["tenant", "role"],
     }
   );
 

@@ -1,15 +1,17 @@
 /**
  * A set of functions called "actions" for `gettenantbyidentity`
  */
+declare const strapi: any;
 
 export default {
-  get: async (ctx, next) => {
+  get: async (ctx: any, next: any) => {
     try {
       const { query, params } = ctx.request;
+
       if (params.identity) {
         const tenant = await strapi.query("api::tenant.tenant").findOne({
           where: {
-            identity: params.identity,
+            identity: params.identity, 
           },
           populate: {
             logo: {
@@ -32,3 +34,4 @@ export default {
     }
   },
 };
+

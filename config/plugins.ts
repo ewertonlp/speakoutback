@@ -23,20 +23,15 @@ export default ({ env }) => ({
   },
   upload: {
     config: {
-      provider: "aws-s3",
+      provider: "local",
       providerOptions: {
-        accessKeyId: env("AWS_ACCESS_KEY_ID"),
-        secretAccessKey: env("AWS_ACCESS_SECRET"),
-        region: env("AWS_REGION"),
-        params: {
-          Bucket: env("AWS_BUCKET"),
-        },
+        sizeLimit: 1000000,
       },
-      actionOptions: {
-        upload: {},
-        uploadStream: {},
-        delete: {},
-      },
+    },
+    actionOptions: {
+      upload: {},
+      uploadStream: {},
+      delete: {},
     },
   },
 });

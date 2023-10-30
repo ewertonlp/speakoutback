@@ -23,7 +23,6 @@ export default factories.createCoreController(
           where: filters,
           populate: { logo: true, banner: true },
         });
-
         return tenants;
       } catch (err) {
         return ctx.unauthorized();
@@ -46,7 +45,7 @@ export default factories.createCoreController(
           },
           populate: { logo: true, banner: true },
         });
-
+        
         return tenants;
       } catch (err) {
         return ctx.unauthorized();
@@ -56,6 +55,7 @@ export default factories.createCoreController(
     async create(ctx) {
       try {
         const user = await GetTenantUserJwt();
+       
         if (user?.role.type != "admin") {
           return ctx.notAcceptable(
             "Usuário sem permissão para cadastrar TENANT"
