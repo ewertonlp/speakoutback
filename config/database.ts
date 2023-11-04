@@ -1,11 +1,12 @@
 import path from "path";
 const fs = require("fs");
-export default ({ env }) => {
+module.exports = ({ env }) => {
   const client = env("DATABASE_CLIENT", "sqlite");
 
   const connections = {
     mysql: {
       connection: {
+        client: 'mysql',
         connectionString: env("DATABASE_URL"),
         host: env("DATABASE_HOST", "localhost"),
         port: env.int("DATABASE_PORT", 3306),
