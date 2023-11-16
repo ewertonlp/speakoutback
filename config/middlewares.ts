@@ -20,20 +20,20 @@ export default [
       contentSecurityPolicy: {
         useDefaults: true,
         directives: {
-          "connect-src": ["'self'", "https:"],
+          "connect-src": ["'self'", "https:", ""],
           "img-src": [
             "'self'",
             "data:",
             "blob:",
             "dl.airtable.com",
-            "strapi-adv-doc-s3.s3.us-east-1.amazonaws.com",
+            "res.cloudinary.com",
           ],
           "media-src": [
             "'self'",
             "data:",
             "blob:",
             "dl.airtable.com",
-            "strapi-adv-doc-s3.s3.us-east-1.amazonaws.com",
+            "res.cloudinary.com",
           ],
           upgradeInsecureRequests: null,
         },
